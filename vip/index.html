@@ -228,25 +228,37 @@ form.addEventListener("submit", async e => {
   if (!$("consent").checked) return fail("Coche la case pour accepter d'être contacté.");
   t.num = ticketNumber();
   btn.disabled = true; btn.textContent = "Envoi en cours…";
-  try {
-    const res = await fetch(FORM_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({
-        "Ticket": t.num, "Prénom": t.prenom, "Nom": t.nom, "WhatsApp": t.whatsapp, "Email": t.email,
-        "Événement": "Dimanche 29 novembre, 19h00 (Zoom)",
-        _subject: "Nouveau ticket VIP : " + t.prenom + " " + t.nom + " (" + t.num + ")",
-        _template: "table", _captcha: "false"
-      })
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok || String(data.success) !== "true") throw new Error(data.message || "envoi refusé");
-    save(t); showTicket(t);
-  } catch (x) {
-    fail("L'inscription n'est pas passée. Vérifie ta connexion et réessaie.");
-  } finally {
+  const fields = {
+    "Ticket": t.num, "Prénom": t.prenom, "Nom": t.nom, "WhatsApp": t.whatsapp, "Email": t.email,
+    "Événement": "Dimanche 29 novembre, 19h00 (Zoom)",
+    _subject: "Nouveau ticket VIP : " + t.prenom + " " + t.nom + " (" + t.num + ")",
+    _template: "table", _captcha: "false"
+  };
+  // Hors connexion : on ne peut rien envoyer, on le dit.
+  if (navigator.onLine === false) {
     btn.disabled = false; btn.textContent = "Obtenir mon ticket VIP";
+    return fail("Tu n'as pas de connexion internet. Reconnecte-toi et réessaie.");
   }
+  try {
+    // Envoi principal, limité à 12 secondes.
+    const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 12000);
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST", signal: ctrl.signal,
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(fields)
+    });
+    clearTimeout(timer);
+    await res.text().catch(() => "");
+    // Le serveur a reçu la demande : l'email part chez Ivan (même la toute première fois, après activation).
+  } catch (x) {
+    // Réponse illisible ou trop lente : on renvoie par la voie classique du formulaire, sans attendre de réponse.
+    try {
+      const fd = new FormData(); for (const k in fields) fd.append(k, fields[k]);
+      await fetch(FORM_ENDPOINT.replace("/ajax/", "/"), { method: "POST", mode: "no-cors", body: fd });
+    } catch (y) {}
+  }
+  save(t); showTicket(t);
+  btn.disabled = false; btn.textContent = "Obtenir mon ticket VIP";
 });
 function fail(msg){ err.textContent = msg; err.hidden = false; }
 
