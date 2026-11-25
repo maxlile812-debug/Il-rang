@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ticket VIP · Ivan × Guest spécial</title>
+<meta name="description" content="Présentation d'opportunité en ligne, dimanche 29 novembre à 19h. Réserve ton ticket VIP.">
+<meta name="theme-color" content="#5c0008">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+/* Mise en page : une colonne mobile, héros rouge suisse, carte formulaire, puis ticket VIP façon billet détachable */
+:root{
+  --red-900:#2a0004; --red-800:#4a0008; --red-600:#a3101c; --red-500:#d71a28;
+  --gold-300:#ffe08a; --gold-500:#f5be3c; --gold-700:#b36b00;
+  --ink:#fff; --muted:#f3c9cc; --card:#1c0205; --line:rgba(245,190,60,.45);
+  --display:"Anton","Impact","Arial Narrow",sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --script:"Great Vibes","Brush Script MT",cursive;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:radial-gradient(120% 70% at 50% 0%,var(--red-500) 0%,var(--red-600) 30%,var(--red-800) 65%,var(--red-900) 100%) fixed,var(--red-900);
+  color:var(--ink);font:16px/1.5 var(--body);min-height:100vh;
+  padding:env(safe-area-inset-top,0) max(16px,env(safe-area-inset-right,0px)) calc(32px + env(safe-area-inset-bottom,0)) max(16px,env(safe-area-inset-left,0px));
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;
+  background-image:linear-gradient(rgba(255,160,160,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,160,160,.5) 1px,transparent 1px);
+  background-size:44px 44px}
+main{position:relative;max-width:480px;margin:0 auto;display:grid;gap:22px}
+
+.hero{text-align:center;padding-top:22px;position:relative}
+.flag{position:absolute;top:64px;right:0;width:54px;height:54px;background:var(--red-500);border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.flag::before,.flag::after{content:"";position:absolute;background:#fff;left:50%;top:50%;transform:translate(-50%,-50%)}
+.flag::before{width:12px;height:34px}.flag::after{width:34px;height:12px}
+.eyebrow{font-weight:800;font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-300)}
+.photo{display:block;width:min(78%,320px);margin:6px auto -40px;-webkit-mask-image:linear-gradient(#000 70%,transparent 98%);mask-image:linear-gradient(#000 70%,transparent 98%);filter:drop-shadow(0 0 28px rgba(255,80,60,.55))}
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.95;margin:0;font-size:clamp(3rem,15vw,4.6rem);
+  background:linear-gradient(#fff6cf 0%,var(--gold-500) 48%,#e08a00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 5px 0 var(--gold-700)) drop-shadow(0 12px 18px rgba(0,0,0,.6));text-wrap:balance;position:relative}
+.lead{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.6rem;letter-spacing:.02em;margin:0 0 4px;position:relative}
+.neon{font-family:var(--script);font-size:clamp(2.4rem,11vw,3.2rem);line-height:1.1;margin:10px 0 0;color:#fff;
+  text-shadow:0 0 4px #fff,0 0 14px #ff8c8c,0 0 30px #ff3b3b}
+.when{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.chip{border:1.5px solid var(--line);background:rgba(28,2,5,.6);border-radius:999px;padding:6px 14px;font-weight:800;font-size:.9rem;letter-spacing:.04em}
+.chip b{color:var(--gold-300)}
+
+.card{background:rgba(28,2,5,.82);border:2px solid var(--line);border-radius:20px;padding:22px 18px;backdrop-filter:blur(6px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.card h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.7rem;margin:0 0 4px;color:var(--gold-300);letter-spacing:.02em}
+.card p.sub{margin:0 0 16px;color:var(--muted);font-size:.95rem}
+form{display:grid;gap:12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:380px){.row{grid-template-columns:1fr}}
+label{display:grid;gap:5px;font-weight:600;font-size:.85rem;color:var(--muted);min-width:0}
+input[type=text],input[type=tel],input[type=email]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(255,255,255,.22);border-radius:12px;padding:12px 14px;outline:none}
+input:focus-visible{border-color:var(--gold-500);box-shadow:0 0 0 3px rgba(245,190,60,.3)}
+.consent{grid-template-columns:auto 1fr;align-items:start;gap:10px;font-weight:400;font-size:.8rem;line-height:1.4}
+.consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--gold-500)}
+button,.btn{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:800;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;text-align:center;
+  border-radius:14px;padding:15px 18px;display:block;width:100%}
+.btn-gold{background:linear-gradient(#ffe9a6,var(--gold-500) 55%,#e08a00);color:#3a1600;box-shadow:0 5px 0 var(--gold-700),0 12px 24px rgba(0,0,0,.4)}
+.btn-gold:active{transform:translateY(3px);box-shadow:0 2px 0 var(--gold-700)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+button:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+button[disabled]{opacity:.6;cursor:wait}
+.err{color:#ffd0d0;background:rgba(255,0,0,.15);border:1px solid rgba(255,120,120,.5);border-radius:10px;padding:10px 12px;font-size:.9rem}
+
+/* Ticket */
+.ticket{position:relative;border-radius:22px;overflow:hidden;color:#2b1200;
+  background:linear-gradient(135deg,#fff3c4 0%,#f8cf62 40%,#e9a520 70%,#ffe39a 100%);box-shadow:0 22px 50px rgba(0,0,0,.55)}
+.ticket::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 60%);transform:translateX(-100%);animation:shine 3.2s ease-in-out 0.6s infinite}
+@keyframes shine{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.ticket::after{animation:none;display:none}}
+.t-top{padding:20px 20px 16px;display:grid;gap:4px}
+.t-brand{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase}
+.t-vip{font-family:var(--display);font-size:4.2rem;line-height:.9;letter-spacing:.04em;color:#7a0010;text-shadow:0 3px 0 rgba(255,255,255,.5)}
+.t-name{font-family:var(--script);font-size:2.4rem;line-height:1.1;color:#4a0008;overflow-wrap:anywhere}
+.t-perf{position:relative;height:0;border-top:3px dashed rgba(74,0,8,.35);margin:0 18px}
+.t-perf::before,.t-perf::after{content:"";position:absolute;top:-17px;width:32px;height:32px;border-radius:50%;background:var(--red-800)}
+.t-perf::before{left:-35px}.t-perf::after{right:-35px}
+.t-bottom{padding:16px 20px 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
+.t-k{font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;opacity:.65}
+.t-v{font-weight:800;font-size:1.02rem;font-variant-numeric:tabular-nums}
+.t-num{grid-column:1/-1;display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(74,0,8,.2);padding-top:12px}
+.t-num .t-v{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:1.25rem;letter-spacing:.08em}
+.actions{display:grid;gap:12px}
+.hint{text-align:center;color:var(--muted);font-size:.9rem;margin:0}
+footer{text-align:center;color:var(--muted);font-size:.75rem;opacity:.8}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <span class="flag" aria-hidden="true"></span>
+    <div class="eyebrow">Présentation d'opportunité</div>
+    <img class="photo" src="ivan.webp" alt="Ivan" width="520" height="480">
+    <p class="lead">Tu veux un</p>
+    <h1>Revenu en plus ?</h1>
+    <p class="neon">Ivan × Guest spécial</p>
+    <div class="when">
+      <span class="chip">Dimanche <b>29 novembre</b></span>
+      <span class="chip"><b>19h00</b> · En ligne sur Zoom</span>
+    </div>
+  </header>
+
+  <section class="card" id="inscription">
+    <h2>Réserve ton ticket VIP</h2>
+    <p class="sub">Inscris-toi pour recevoir ton ticket et le lien Zoom de la présentation.</p>
+    <form id="form" novalidate>
+      <div class="row">
+        <label for="prenom">Prénom<input id="prenom" name="prenom" type="text" autocomplete="given-name" required></label>
+        <label for="nom">Nom<input id="nom" name="nom" type="text" autocomplete="family-name" required></label>
+      </div>
+      <label for="whatsapp">WhatsApp<input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="+41 79 000 00 00" required></label>
+      <label for="email">Email<input id="email" name="email" type="email" autocomplete="email" placeholder="toi@exemple.com" required></label>
+      <label class="consent" for="consent"><input id="consent" type="checkbox" required><span>J'accepte qu'Ivan me contacte par WhatsApp ou email au sujet de cette présentation.</span></label>
+      <div class="err" id="err" hidden></div>
+      <button class="btn-gold" id="submit" type="submit">Obtenir mon ticket VIP</button>
+    </form>
+  </section>
+
+  <section id="ticketView" hidden>
+    <div class="actions">
+      <article class="ticket" aria-label="Ton ticket VIP">
+        <div class="t-top">
+          <div class="t-brand"><span>Ivan × Guest spécial</span><span>Admit one</span></div>
+          <div class="t-vip">VIP</div>
+          <div class="t-name" id="tName"></div>
+        </div>
+        <div class="t-perf" aria-hidden="true"></div>
+        <div class="t-bottom">
+          <div><div class="t-k">Date</div><div class="t-v">Dim. 29 nov.</div></div>
+          <div><div class="t-k">Heure</div><div class="t-v">19h00</div></div>
+          <div><div class="t-k">Lieu</div><div class="t-v">Zoom</div></div>
+          <div><div class="t-k">Accès</div><div class="t-v">Présentation</div></div>
+          <div class="t-num"><div><div class="t-k">N° de ticket</div><div class="t-v" id="tNum"></div></div><div class="t-k">★ VIP</div></div>
+        </div>
+      </article>
+      <p class="hint">Fais une capture d'écran de ton ticket. Connecte-toi 5 min avant le début.</p>
+      <a class="btn btn-gold" id="zoomBtn" href="#" target="_blank" rel="noopener">Rejoindre le Zoom</a>
+      <a class="btn btn-ghost" id="gcal" href="#" target="_blank" rel="noopener">Ajouter à Google Agenda</a>
+      <button class="btn-ghost" id="ics" type="button">Ajouter à l'agenda du téléphone</button>
+      <button class="btn-ghost" id="reset" type="button">Inscrire une autre personne</button>
+    </div>
+  </section>
+
+  <footer>Dimanche 29 novembre · 19h00 (heure de Genève) · En ligne</footer>
+</main>
+
+<script>
+// === Réglages ===
+// FORM_ENDPOINT : adresse FormSubmit qui t'envoie chaque inscription par email.
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/lorenzzoivan@gmail.com";
+const ZOOM_URL = "https://us05web.zoom.us/j/87581866477?pwd=ic0aaEWNrbusApuCRxmp8D73aSgY83.1";
+const EVENT = { title: "Présentation d'opportunité · Ivan × Guest spécial", startUtc: "20261129T180000Z", endUtc: "20261129T190000Z" };
+const KEY = "vip-ticket-2026-11-29";
+
+const $ = id => document.getElementById(id);
+const form = $("form"), err = $("err"), btn = $("submit");
+
+function ticketNumber(){
+  const abc = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let s = "";
+  const r = crypto.getRandomValues(new Uint8Array(5));
+  for (const v of r) s += abc[v % abc.length];
+  return "VIP-" + s;
+}
+function showTicket(t){
+  $("tName").textContent = t.prenom + " " + t.nom;
+  $("tNum").textContent = t.num;
+  $("inscription").hidden = true;
+  $("ticketView").hidden = false;
+  window.scrollTo({ top: $("ticketView").offsetTop - 16, behavior: "smooth" });
+}
+function save(t){ try { localStorage.setItem(KEY, JSON.stringify(t)); } catch(e) {} }
+function load(){ try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e) { return null; } }
+
+$("zoomBtn").href = ZOOM_URL;
+$("gcal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+  + "&text=" + encodeURIComponent(EVENT.title)
+  + "&dates=" + EVENT.startUtc + "/" + EVENT.endUtc
+  + "&details=" + encodeURIComponent("Lien Zoom : " + ZOOM_URL)
+  + "&location=" + encodeURIComponent("Zoom");
+
+$("ics").addEventListener("click", () => {
+  const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Ivan//VIP//FR","BEGIN:VEVENT",
+    "UID:vip-20261129@ivan","DTSTAMP:20261125T000000Z",
+    "DTSTART:" + EVENT.startUtc, "DTEND:" + EVENT.endUtc,
+    "SUMMARY:" + EVENT.title, "DESCRIPTION:Lien Zoom : " + ZOOM_URL, "LOCATION:Zoom", "URL:" + ZOOM_URL,
+    "BEGIN:VALARM","TRIGGER:-PT30M","ACTION:DISPLAY","DESCRIPTION:La présentation commence dans 30 min","END:VALARM",
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
+  a.download = "presentation-29-novembre.ics";
+  document.body.appendChild(a); a.click(); a.remove();
+});
+$("reset").addEventListener("click", () => {
+  try { localStorage.removeItem(KEY); } catch(e) {}
+  form.reset(); $("ticketView").hidden = true; $("inscription").hidden = false; $("prenom").focus();
+});
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  err.hidden = true;
+  const v = id => $(id).value.trim();
+  const t = { prenom: v("prenom"), nom: v("nom"), whatsapp: v("whatsapp"), email: v("email") };
+  if (!t.prenom || !t.nom) return fail("Indique ton prénom et ton nom.");
+  if (t.whatsapp.replace(/\D/g, "").length < 8) return fail("Ton numéro WhatsApp semble incomplet. Ajoute l'indicatif, par exemple +41.");
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t.email)) return fail("Ton adresse email n'est pas valide.");
+  if (!$("consent").checked) return fail("Coche la case pour accepter d'être contacté.");
+  t.num = ticketNumber();
+  btn.disabled = true; btn.textContent = "Envoi en cours…";
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        "Ticket": t.num, "Prénom": t.prenom, "Nom": t.nom, "WhatsApp": t.whatsapp, "Email": t.email,
+        "Événement": "Dimanche 29 novembre, 19h00 (Zoom)",
+        _subject: "Nouveau ticket VIP : " + t.prenom + " " + t.nom + " (" + t.num + ")",
+        _template: "table", _captcha: "false"
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || String(data.success) !== "true") throw new Error(data.message || "envoi refusé");
+    save(t); showTicket(t);
+  } catch (x) {
+    fail("L'inscription n'est pas passée. Vérifie ta connexion et réessaie.");
+  } finally {
+    btn.disabled = false; btn.textContent = "Obtenir mon ticket VIP";
+  }
+});
+function fail(msg){ err.textContent = msg; err.hidden = false; }
+
+const existing = load();
+if (existing) showTicket(existing);
+</script>
+</body>
+</html>
