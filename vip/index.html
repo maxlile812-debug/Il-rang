@@ -32,23 +32,31 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;
   background-size:44px 44px}
 main{position:relative;max-width:480px;margin:0 auto;display:grid;gap:22px}
 
-.hero{text-align:center;padding-top:22px;position:relative}
-.flag{position:absolute;top:64px;right:0;width:54px;height:54px;background:var(--red-500);border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.hero{text-align:center;position:relative;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.banner{position:relative;display:block;width:100%;aspect-ratio:720/587;height:auto;-webkit-mask-image:linear-gradient(#000 60%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
+.hero-text{position:relative;margin-top:-28px;padding:0 16px}
+.flag{display:none;position:absolute;top:64px;right:0;width:54px;height:54px;background:var(--red-500);border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 .flag::before,.flag::after{content:"";position:absolute;background:#fff;left:50%;top:50%;transform:translate(-50%,-50%)}
 .flag::before{width:12px;height:34px}.flag::after{width:34px;height:12px}
 .eyebrow{font-weight:800;font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-300)}
 .photo{display:block;width:min(78%,320px);margin:6px auto -40px;-webkit-mask-image:linear-gradient(#000 70%,transparent 98%);mask-image:linear-gradient(#000 70%,transparent 98%);filter:drop-shadow(0 0 28px rgba(255,80,60,.55))}
-h1{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.95;margin:0;font-size:clamp(3rem,15vw,4.6rem);
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.95;margin:2px 0 0;font-size:clamp(2.5rem,12vw,3.6rem);
   background:linear-gradient(#fff6cf 0%,var(--gold-500) 48%,#e08a00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 5px 0 var(--gold-700)) drop-shadow(0 12px 18px rgba(0,0,0,.6));text-wrap:balance;position:relative}
-.lead{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.6rem;letter-spacing:.02em;margin:0 0 4px;position:relative}
-.neon{font-family:var(--script);font-size:clamp(2.4rem,11vw,3.2rem);line-height:1.1;margin:10px 0 0;color:#fff;
+.lead{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.25rem;letter-spacing:.04em;margin:6px 0 0;position:relative}
+.neon{font-family:var(--script);font-size:clamp(2.1rem,10vw,2.8rem);line-height:1.1;margin:6px 0 0;color:#fff;
   text-shadow:0 0 4px #fff,0 0 14px #ff8c8c,0 0 30px #ff3b3b}
 .when{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
 .chip{border:1.5px solid var(--line);background:rgba(28,2,5,.6);border-radius:999px;padding:6px 14px;font-weight:800;font-size:.9rem;letter-spacing:.04em}
 .chip b{color:var(--gold-300)}
 
 .card{background:rgba(28,2,5,.82);border:2px solid var(--line);border-radius:20px;padding:22px 18px;backdrop-filter:blur(6px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.congrats{text-align:center;margin:0 0 18px;padding-bottom:16px;border-bottom:1px solid rgba(245,190,60,.25)}
+.congrats .big{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(1.9rem,9vw,2.4rem);line-height:1;margin:0;background:linear-gradient(#fff6cf,var(--gold-500) 55%,#e08a00);-webkit-background-clip:text;background-clip:text;color:transparent}
+.congrats .step{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:800;font-size:.95rem}
+.dots{display:inline-flex;gap:5px}.dots i{width:22px;height:6px;border-radius:3px;background:var(--gold-500)}.dots i.off{background:rgba(255,255,255,.25)}
+.done{text-align:center;margin:0}.done .big{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:2.2rem;line-height:1;margin:0;color:var(--gold-300)}
+.done p{margin:6px 0 0;color:var(--muted)}
 .card h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.7rem;margin:0 0 4px;color:var(--gold-300);letter-spacing:.02em}
 .card p.sub{margin:0 0 16px;color:var(--muted);font-size:.95rem}
 form{display:grid;gap:12px}
@@ -96,9 +104,9 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;opacity:.8}
 <body>
 <main>
   <header class="hero">
-    <span class="flag" aria-hidden="true"></span>
+    <img class="banner" src="hero.webp" alt="Ivan devant le Jet d'eau de Genève et le drapeau suisse" width="720" height="587">
+    <div class="hero-text">
     <div class="eyebrow">Présentation d'opportunité</div>
-    <img class="photo" src="ivan.webp" alt="Ivan" width="520" height="480">
     <p class="lead">Tu veux un</p>
     <h1>Revenu en plus ?</h1>
     <p class="neon">Ivan × Guest spécial</p>
@@ -106,11 +114,16 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;opacity:.8}
       <span class="chip">Dimanche <b>29 novembre</b></span>
       <span class="chip"><b>19h00</b> · En ligne sur Zoom</span>
     </div>
+    </div>
   </header>
 
   <section class="card" id="inscription">
+    <div class="congrats">
+      <p class="big">Félicitations pour ce choix !</p>
+      <div class="step"><span class="dots" aria-hidden="true"><i></i><i class="off"></i></span>Plus qu'une étape</div>
+    </div>
     <h2>Réserve ton ticket VIP</h2>
-    <p class="sub">Inscris-toi pour recevoir ton ticket et le lien Zoom de la présentation.</p>
+    <p class="sub">Laisse tes infos : ton ticket et le lien Zoom s'affichent tout de suite.</p>
     <form id="form" novalidate>
       <div class="row">
         <label for="prenom">Prénom<input id="prenom" name="prenom" type="text" autocomplete="given-name" required></label>
@@ -126,6 +139,7 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;opacity:.8}
 
   <section id="ticketView" hidden>
     <div class="actions">
+      <div class="done"><p class="big">C'est validé, ta place est réservée !</p><p>Bienvenue parmi les VIP. On se voit dimanche à 19h.</p></div>
       <article class="ticket" aria-label="Ton ticket VIP">
         <div class="t-top">
           <div class="t-brand"><span>Ivan × Guest spécial</span><span>Admit one</span></div>
